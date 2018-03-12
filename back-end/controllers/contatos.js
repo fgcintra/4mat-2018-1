@@ -65,7 +65,7 @@ module.exports = function() {
    controller.novo = function(req, res) {
       var c = req.body;
 
-      console.log(req);
+      console.log(req.body);
 
       // Retornamos erro caso não tenha passado o _id
       if(! c._id) {
@@ -86,6 +86,85 @@ module.exports = function() {
 
    }
 
+   controller.alterar = function (req, res) {
+
+      var idContato = req.params.id;
+
+      // Verifica se o id passado existe no vetor de contatos
+      var existe = contatos.filter(function (c) {
+         return c._id == idContato;
+      });
+
+      if (existe.length == 0) {
+         // HTTP 404: não encontrado
+         res.status(404).end();
+      }
+
+      // Filtra o vetor contatos, pegando todos os objetos EXCETO
+      // aquele cujo _id estamos modificando
+      var outrosContatos = contatos.filter(function (c) {
+         return c._id != idContato;
+      });
+
+      
+      var existente = existe[0];
+
+      // Altera os dados do contato existente com os dados que
+      // vieram da requisição
+      existente.nome = req.body.nome;
+      existente.email = req.body.email;
+
+      // Acrescenta o modificado de volta aos outros contatos
+      outrosContatos.push(existente);
+
+      // Substitui o vetor de contatos original pelo vetor modificado
+      contatos = outrosContatos;
+
+      // HTTP 204: No content
+      res.status(204).end();
+
+   }
+
+   controller.excluir = function (req, res) {
+
+      var idContato = req.params.id;
+
+      // Verifica se o id passado existe no vetor de contatos
+      var existe = contatos.filter(function (c) {
+         return c._id == idContato;
+      });
+
+      if (existe.length == 0) {
+         // HTTP 404: não encontrado
+         res.status(404).end();
+      }
+
+      // Filtra o vetor contatos, pegando todos os objetos EXCETO
+      // aquele cujo _id estamos modificando
+      var outrosContatos = contatos.filter(function (c) {
+         return c._id != idContato;
+      });
+
+      /*
+      var existente = existe[0];
+
+      // Altera os dados do contato existente com os dados que
+      // vieram da requisição
+      existente.nome = req.body.nome;
+      existente.email = req.body.email;
+
+      // Acrescenta o modificado de volta aos outros contatos
+      outrosContatos.push(existente);
+      */
+
+      // Substitui o vetor de contatos original pelo vetor modificado
+      contatos = outrosContatos;
+
+      // HTTP 204: No content
+      res.status(204).end();
+
+   }
+   
    return controller;
 
 }

@@ -6,6 +6,10 @@ router.get('/', controller().listar);
 
 router.get('/:id', controller().obterUm);
 
-router.post('/', controller().novo);
+router.put('/', controller().novo);
+
+router.post('/:id', controller().alterar);
+
+router.delete('/:id', controller().excluir);
 
 module.exports = router;
