@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -11,6 +12,22 @@ var about = require('./routes/about');
 var contatos = require('./routes/contatos');
 
 var app = express();
+
+var db = 'mongodb://localhost/estoque';
+
+mongoose.connect(db);
+
+mongoose.connection.on('connected', function() {
+  console.log('Mongoose! conectado a ' + db);
+});
+
+mongoose.connection.on('disconnected', function() {
+  console.log('Mongoose! desconectado de ' + db);
+});
+
+mongoose.connection.on('error', function(erro) {
+  console.log('Mongoose! Erro na conexão: ' + erro);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
