@@ -19,6 +19,79 @@ module.exports = function() {
       )
    }
 
+   controller.novo = function(req, res) {
+      var novo = new Produto(req.body);
+
+      novo.save(function(erro) {
+         if(erro) {
+            console.error(erro);
+            res.status(500).json(erro).end();
+         }
+         else {
+            res.status(201).end();
+         }
+      });
+
+   }
+
+   controller.obterUm = function(req, res) {
+      var idProduto = req.params.id;
+
+      Produto.findById(idProduto).exec().then(
+         function(produto) { 
+            if(produto) { // Encontrou o produto
+               res.json(produto).end(); // Retorna o produto
+            }
+            else { // Não encontrou o produto
+               res.status(404).end();
+            }
+         },
+         function(erro) { // Erro no servidor MongoDB
+            console.error(erro);
+            res.status(500).json(erro).end();
+         }
+      );
+
+   }
+
+   controller.alterar = function(req, res) {
+      var idProduto = req.params.id;
+
+      Produto.findByIdAndUpdate(idProduto, req.body).exec().then(
+         function(produto) {
+            if(! produto) { // Não encontrou o produto para atualizar
+               res.status(404).end();
+            }
+            else {
+               res.status(204).end();
+            }
+         },
+         function(erro) { // Erro no servidor MongoDB
+            console.error(erro);
+            res.status(500).json(erro).end();
+         }
+      )
+   }
+
+   controller.excluir = function(req, res) {
+      var idProduto = req.params.id;
+
+      Produto.findByIdAndRemove(idProduto).exec().then(
+         function(produto) {
+            if(! produto) { // Não encontrou o produto para excluir
+               res.status(404).end();
+            }
+            else {
+               res.status(204).end();
+            }
+         },
+         function(erro) { // Erro no servidor MongoDB
+            console.error(erro);
+            res.status(500).json(erro).end();
+         }
+      );
+   }
+
    return controller;
 
 }

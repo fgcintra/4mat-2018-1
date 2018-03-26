@@ -4,12 +4,12 @@ var router = express.Router();
 
 router.get('/', controller().listar);
 
-//router.get('/:id', controller().obterUm);
+router.get('/:id', controller().obterUm);
 
-//router.put('/', controller().novo);
+router.put('/', controller().novo);
 
-//router.post('/:id', controller().alterar);
+router.post('/:id', controller().alterar);
 
-//router.delete('/:id', controller().excluir);
+router.delete('/:id', controller().excluir);
 
 module.exports = router;
