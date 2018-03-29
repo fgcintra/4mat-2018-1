@@ -1,0 +1,10 @@
+#!/bin/sh
+# 
+# Na pasta "/vagrant" da VM, execute os comandos no terminal:
+#
+# 1) chmod +x libera-mongodb
+# 2) ./libera-mongodb
+
+sudo sed -i s/^bind_ip/#bind_ip/g /etc/mongodb.conf
+
+echo "Saia da VM (exit) e, na sequência, recarregue com vagrant reload"
