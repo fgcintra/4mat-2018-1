@@ -1,0 +1,3 @@
+#!/bin/bash
+#ng generate component produto/produto-list
+ng generate service produto/produto
