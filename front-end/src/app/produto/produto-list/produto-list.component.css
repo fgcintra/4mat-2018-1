@@ -1,0 +1,8 @@
+.minha-tabela {
+   border-collapse: collapse;
+}
+
+.minha-tabela td, .minha-tabela th {
+   padding: 4px;
+   border: 1px solid rgb(0, 89, 253);
+}
