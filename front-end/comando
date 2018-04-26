@@ -4,4 +4,10 @@
 
 #npm i @ng-bootstrap/ng-bootstrap --save
 
-npm i bootstrap --save
+#npm i bootstrap --save
+
+# Gerar serviço para a categoria
+ng g s categoria/categoria
+
+# Gerar componente de listagem para a categoria
+ng g c categoria/categoria-list

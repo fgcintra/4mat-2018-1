@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { ProdutoListComponent } from './produto/produto-list/produto-list.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { CategoriaListComponent } from './categoria/categoria-list/categoria-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProdutoListComponent
+    ProdutoListComponent,
+    CategoriaListComponent
   ],
   imports: [
     BrowserModule,
