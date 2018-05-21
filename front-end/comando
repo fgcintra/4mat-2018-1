@@ -7,7 +7,10 @@
 #npm i bootstrap --save
 
 # Gerar serviço para a categoria
-ng g s categoria/categoria
+#ng g s categoria/categoria
 
 # Gerar componente de listagem para a categoria
-ng g c categoria/categoria-list
+#ng g c categoria/categoria-list
+
+#Gerar componente de formulário para o produto
+ng g c produto/produto-form
