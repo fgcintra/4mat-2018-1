@@ -23,4 +23,10 @@ export class ProdutoService {
     return this.http.get('http://localhost:3000/produto/' + id);
   }
 
+  salvar(produto) {
+    if (produto._id) {
+      return this.http.post('http://localhost:3000/produto/' + produto._id,        produto);
+    }
+  }
+
 }
