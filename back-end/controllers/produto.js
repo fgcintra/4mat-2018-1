@@ -20,8 +20,16 @@ module.exports = function() {
    }
 
    controller.novo = function(req, res) {
-      var novo = new Produto(req.body);
-
+      
+      Produto.create(req.body).then(
+         function (produto) {
+            res.status(201).json(produto);
+         },
+         function (erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+         }
+      );
 
    }
 

@@ -44,10 +44,15 @@ export class ProdutoFormComponent implements OnInit {
   }
 
   enviar(form) {
-    this.ps.salvar(this.produto).subscribe(
-      dados => alert('Dados salvos com sucesso.'),
-      erro => alert('Ocorreu um erro:\n ' + erro)
-    );
+    if (form.valid) {
+      this.ps.salvar(this.produto).subscribe(
+        dados => alert('Dados salvos com sucesso.'),
+        erro => {
+          alert('Ocorreu um erro:\n ' + erro);
+          console.log(erro);
+        }
+      );
+    }
   }
 
 }

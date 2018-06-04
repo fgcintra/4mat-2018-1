@@ -14,7 +14,18 @@
 
   <div class="form-group">
     <label for="cod_barras">Código de barras</label>
-    <input type="text" class="form-control" id="cod_barras" name="cod_barras" [(ngModel)]="produto.cod_barras" />
+    <input type="number" class="form-control" id="cod_barras" name="cod_barras" [(ngModel)]="produto.cod_barras" minlength="8" maxlength="13" />
+
+    <div class="alert alert-danger" *ngIf="cod_barras.errors.minlength || cod_barras.errors.maxlength">
+      O código de barras deve ter entre 8 e 13 dígitos
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="preco">Preço</label>
+    <input type="number" class="form-control" id="preco" name="preco"
+      [(ngModel)]="produto.preco" step="0.01" />
   </div>
 
   <div class="form-group">

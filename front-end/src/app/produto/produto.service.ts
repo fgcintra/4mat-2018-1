@@ -24,8 +24,12 @@ export class ProdutoService {
   }
 
   salvar(produto) {
+    console.log(produto);
     if (produto._id) {
-      return this.http.post('http://localhost:3000/produto/' + produto._id,        produto);
+      return this.http.post('http://localhost:3000/produto/' + produto._id, produto);
+    } else { // Produto sem _id -> Produto novo
+      console.log('entrou aqui');
+      return this.http.put('http://localhost:3000/produto', produto);
     }
   }
 
