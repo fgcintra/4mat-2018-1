@@ -33,4 +33,8 @@ export class ProdutoService {
     }
   }
 
+  excluir(id: String) {
+    return this.http.delete('http://localhost:3000/produto/' + id);
+  }
+
 }

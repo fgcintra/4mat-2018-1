@@ -20,4 +20,19 @@ export class ProdutoListComponent implements OnInit {
     );
   }
 
+  excluir(id: String) {
+    if (confirm('Deseja realmente excluir este produto?')) {
+      this.produtoService.excluir(id).subscribe(
+        () => {
+          this.ngOnInit(); // Atualiza a listagem
+          alert('Produto excluído com sucesso');
+        },
+        erro => {
+          alert('Não foi possível excluir este produto');
+          console.error(erro);
+        }
+      );
+    }
+  }
+
 }
